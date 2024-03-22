@@ -15,7 +15,6 @@ export class ProductComponent {
   @Output() addToCartClicked = new EventEmitter();
 
   addToCartHandler(){
-    console.log("click from child")
-    this.addToCartClicked.emit("mensaje desde el hijo"+ this.product.title);
+    this.addToCartClicked.emit(this.product);
   }
 }

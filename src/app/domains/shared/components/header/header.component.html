@@ -81,4 +81,9 @@
       </svg>
     </button>
   </div>
+  <div>
+    <div *ngFor="let product of cart">
+      <p>{{product.title}}</p>
+    </div>
+  </div>
 </div>
