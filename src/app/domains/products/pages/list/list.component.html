@@ -1,8 +1,17 @@
-<div class="container mx-auto">
-    <div class="grid grid-cols-4 gap-5">
-        <app-product
-            *ngFor="let product of products()"
-            [product]="product"
-            (addToCartClicked)="addToCart($event)" />
+<div class="flex space-x-4">
+    <div>
+        <ul class="mt-5 w-40">
+            <li *ngFor="let ca of categories()">
+                <a href="">{{ca.name}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="container mx-auto w-full">
+        <div class="grid grid-cols-4 gap-5">
+            <app-product
+                *ngFor="let product of products()"
+                [product]="product"
+                (addToCartClicked)="addToCart($event)" />
+        </div>
     </div>
 </div>
