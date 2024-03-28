@@ -12,15 +12,18 @@ export const routes: Routes = [
         children: [
             {
                 path: '',
-                component: ListComponent
+                //component: ListComponent
+                loadComponent: () => import("./domains/products/pages/list/list.component").then(m => m.ListComponent)
             },
             {
                 path: 'about',
-                component: AboutComponent
+                //component: AboutComponent
+                loadComponent: () => import("./domains/info/about/about.component").then(m => m.AboutComponent)
             },
             {
                 path: 'product/:id',
-                component: ProductDetailComponent
+                //component: ProductDetailComponent
+                loadComponent: () => import("./domains/products/pages/product-detail/product-detail.component").then(m => m.ProductDetailComponent)
             },
         ]
     },    
