@@ -1,17 +1,21 @@
 <div class="flex space-x-4">
     <div>
         <ul class="mt-5 w-40">
-            <li *ngFor="let ca of categories()">
+            @for (ca of categories(); track ca) {
+<li>
                 <a routerLink="/" [queryParams]="{category_id: ca.id}">{{ca.name}}</a>
             </li>
+}
         </ul>
     </div>
     <div class="container mx-auto w-full">
         <div class="grid grid-cols-4 gap-5">
-            <app-product
-                *ngFor="let product of products()"
+            @for (product of products(); track product) {
+<app-product
+               
                 [product]="product"
                 (addToCartClicked)="addToCart($event)" />
+}
         </div>
     </div>
 </div>
