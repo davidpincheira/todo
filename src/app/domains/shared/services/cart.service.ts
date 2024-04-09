@@ -18,18 +18,19 @@ export class CartService {
 
   constructor() { }
 
-  deleteFromCart(product: Product){
-      const existingItemIndex = this.cart().findIndex(item => item.id === product.id );
-      //si es distinto a -1 quiere decir que el elemento existe
-      if(existingItemIndex != -1){
-        //verifico que cuando quede el ultimo vacio el carrito
-        if(this.cart()[existingItemIndex].quantity == 1){
-          //vacio el carrito, elimino el primer elemento a partir del index
-          this.cart().splice(existingItemIndex, 1)
+  deleteFromCart(product: Product){   
+      const existingItemIndex = this.cart().findIndex(item => item.id === product.id);
+      if(existingItemIndex !== -1){
+        if(this.cart()[existingItemIndex].quantity === 1){
+            // Crear un nuevo array que excluya el producto a eliminar
+            const updatedCart = this.cart().filter((item, index) => index !== existingItemIndex);
+            // Establecer el nuevo array como el carrito
+            this.cart.set(updatedCart);
+        } else {
+            // Si la cantidad es mayor a 1, simplemente disminuir la cantidad
+            this.cart()[existingItemIndex].quantity -= 1;
         }
-        //si el producto esta, le restamos 1
-        this.cart()[existingItemIndex].quantity -= 1;      
-      }
+    }
   }
 
   addToCart(product: Product){
