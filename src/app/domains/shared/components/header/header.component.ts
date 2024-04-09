@@ -30,9 +30,6 @@ export class HeaderComponent {
 
   sumOneProduct(product: Product){
     this.cartService.addToCart(product)
-    //product.quantity = 1
-    /* this.cartService.addToCart(product)
-    console.log(this.cart()) */
   }
 
   /* 

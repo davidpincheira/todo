@@ -65,7 +65,7 @@
   </nav>
 
   <div
-  class="fixed border-l-4 top-0 right-0 bg-red z-40 w-72 h-screen p-4 overflow-y-auto transition-transform bg-white " [class.translate-x-full] = "hideSideMenu()"
+  class="fixed border-l-4 top-0 right-0 bg-red z-40 w-96 h-screen p-4 overflow-y-auto transition-transform bg-white " [class.translate-x-full] = "hideSideMenu()"
 >
   <div class="flex justify-between items-center">
     <p class="text-xl">Total</p>
@@ -90,14 +90,14 @@
     <div class="pt-4 flex flex-col">
       @for (product of cart(); track product) {
         <div class="flex justify-between items-center space-y-2">
-          <div class="flex space-x-2 items-center">
-            <img class="w-6 h-6" [src]="product.images[0]" [alt]="product.title">
-            <h3>{{ product.title }}</h3>
+          <img class="m-2 h-16 w-16 rounded-md border object-cover object-center" [src]="product.images[0]" [alt]="product.title">
+          <div class="flex w-full flex-col px-4 py-4">
+            <span class="font-semibold">{{ product.title }}</span>
+            <p>$ {{ product.price }}</p>
           </div>
-          <p>{{ product.price }}</p>
           <button class="text-black bg-red-500 font-medium rounded-md text-sm px-5 py-2.5 w-2"
           (click)="deleteOneProduct(product)">-</button>
-          <span class="item-quantity"> {{product.quantity}} </span>
+          <span class="item-quantity font-bold mx-1"> {{product.quantity}} </span>
           <button class="text-black bg-green-500 font-medium rounded-md text-sm px-5 py-2.5 w-2"
           (click)="sumOneProduct(product)">+</button>
         </div>
@@ -106,8 +106,8 @@
       <div>
         <p>Total: {{ totalPrice() }}</p>
       </div>
-      <!-- <div>
-        <p>Total mejorado: {{ totalProducts() }}</p>
-      </div> -->
+      @if( cart().length>0){
+        <button class="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white">Checkout</button>
+      }
   </div>
 </div>
