@@ -2,20 +2,19 @@
     <div>
         <ul class="mt-5 w-40">
             @for (ca of categories(); track ca) {
-<li>
+            <li>
                 <a routerLink="/" [queryParams]="{category_id: ca.id}">{{ca.name}}</a>
             </li>
-}
+            }
         </ul>
     </div>
     <div class="container mx-auto w-full">
         <div class="grid grid-cols-4 gap-5">
             @for (product of products(); track product) {
-<app-product
-               
+                <app-product               
                 [product]="product"
                 (addToCartClicked)="addToCart($event)" />
-}
+            }
         </div>
     </div>
 </div>

@@ -47,7 +47,13 @@ export class ListComponent {
   getProducts(){
     this.productService.getProducts(this.category_id).subscribe({
       next: (res)  => {
-        this.products.set(res)
+        const modifiedProducts = res.map(product => {
+          return {
+            ...product,
+            quantity: 1
+          };
+        });
+        this.products.set(modifiedProducts)
       },
       error: (err) => {
         console.error('Error getting products: ', err)

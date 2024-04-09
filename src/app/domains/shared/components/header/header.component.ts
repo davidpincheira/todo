@@ -15,11 +15,37 @@ export class HeaderComponent {
   hideSideMenu = signal(true)
   private cartService = inject(CartService)
   cart = this.cartService.cart
-  total = this.cartService.total
+  totalPrice = this.cartService.totalPrice  
+
+ /*  @Input() carito: Product[] = []
+  totalProducts = signal(0) */
 
   toggleSideMenu() {
     this.hideSideMenu.update(prevState =>  !prevState);
   }
+
+  deleteOneProduct(product: Product){
+    this.cartService.deleteFromCart(product)
+  }
+
+  sumOneProduct(product: Product){
+    this.cartService.addToCart(product)
+    //product.quantity = 1
+    /* this.cartService.addToCart(product)
+    console.log(this.cart()) */
+  }
+
+  /* 
+  ngOnchanges(changes: SimpleChanges){
+    const carito = changes['cart']
+    if(carito) {
+      this.totalProducts.set(this.calcTotal())
+    }
+  }
+
+  calcTotal(){
+    return this.carito.reduce((totalProducts, product) => totalProducts + product.price, 0);
+  } */
 
  
 }

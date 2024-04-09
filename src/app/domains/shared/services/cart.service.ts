@@ -7,14 +7,44 @@ import { Product } from '../models/product.model';
 export class CartService {
 
   cart = signal<Product[]>([]) //es una señal(signal()) que administra un array ([]) de productos (Product) y se inicializa en vacio (([])) 
-  total = computed(()=>{
+  /* totalPrice = computed(()=>{
     const cart = this.cart()
-    return cart.reduce((total, product) => total + product.price, 0);
-  })
+    return cart.reduce((totalPrice, product) => totalPrice + product.price , 0);
+  }) */
+  totalPrice() {
+    const cart = this.cart();
+    return cart.reduce((totalPrice, product) => totalPrice + (product.quantity * product.price), 0);
+  }
 
   constructor() { }
 
-  addToCart(product: Product){
-    this.cart.update(state => [...state, product])
+  deleteFromCart(product: Product){
+      const existingItemIndex = this.cart().findIndex(item => item.id === product.id );
+      //si es distinto a -1 quiere decir que el elemento existe
+      if(existingItemIndex != -1){
+        //verifico que cuando quede el ultimo vacio el carrito
+        if(this.cart()[existingItemIndex].quantity == 1){
+          //vacio el carrito, elimino el primer elemento a partir del index
+          this.cart().splice(existingItemIndex, 1)
+        }
+        //si el producto esta, le restamos 1
+        this.cart()[existingItemIndex].quantity -= 1;      
+      }
   }
+
+  addToCart(product: Product){
+    if(this.cart().length > 0){
+       const existingItemIndex = this.cart().findIndex(item => item.id === product.id );
+       if(existingItemIndex != -1){
+        //si el producto ya esta en el carrito le sumamos 1
+        this.cart()[existingItemIndex].quantity += 1;      
+       } else {         
+        this.cart.update(state => [...state, product])
+       }
+    } else {
+      //si no hay nada en el carrito lo agrega
+      this.cart.update(state => [...state, product])
+    }
+  }
+
 }

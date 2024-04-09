@@ -89,16 +89,25 @@
   <div>
     <div class="pt-4 flex flex-col">
       @for (product of cart(); track product) {
-<div class="flex justify-between items-center space-y-2">
-        <div class="flex space-x-2 items-center">
-          <img class="w-6 h-6" [src]="product.images[0]" [alt]="product.title">
-          <h3>{{ product.title }}</h3>
+        <div class="flex justify-between items-center space-y-2">
+          <div class="flex space-x-2 items-center">
+            <img class="w-6 h-6" [src]="product.images[0]" [alt]="product.title">
+            <h3>{{ product.title }}</h3>
+          </div>
+          <p>{{ product.price }}</p>
+          <button class="text-black bg-red-500 font-medium rounded-md text-sm px-5 py-2.5 w-2"
+          (click)="deleteOneProduct(product)">-</button>
+          <span class="item-quantity"> {{product.quantity}} </span>
+          <button class="text-black bg-green-500 font-medium rounded-md text-sm px-5 py-2.5 w-2"
+          (click)="sumOneProduct(product)">+</button>
         </div>
-        <p>{{ product.price }}</p>
-      </div>
-}
+        
+      }
       <div>
-        <p>Total: {{ total() }}</p>
+        <p>Total: {{ totalPrice() }}</p>
       </div>
+      <!-- <div>
+        <p>Total mejorado: {{ totalProducts() }}</p>
+      </div> -->
   </div>
 </div>
