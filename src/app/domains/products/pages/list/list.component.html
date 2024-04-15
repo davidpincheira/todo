@@ -1,5 +1,5 @@
 <div class="flex space-x-4">
-    <div>
+    <div class="hide-mobile">
         <ul class="mt-5 w-40">
             @for (ca of categories(); track ca) {
             <li>
@@ -9,7 +9,7 @@
         </ul>
     </div>
     <div class="container mx-auto w-full">
-        <div class="grid grid-cols-4 gap-5">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
             @for (product of products(); track product) {
                 <app-product               
                 [product]="product"
