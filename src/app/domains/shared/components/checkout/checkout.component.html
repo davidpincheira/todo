@@ -1,0 +1,65 @@
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Datos de contacto para la entrega</h2>
+    </div>
+  
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form class="space-y-6" action="#" method="POST" [formGroup]="form">
+        <div>
+          <div class="mt-2">
+            <input #email [formGroup]="form" novalidate id="email" placeholder="Email" formControlName="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </div>
+          <div class="mt-2">
+            <input #name [formGroup]="form" novalidate id="name" placeholder="Nombre" formControlName="name" type="name" autocomplete="name" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </div>
+          <div class="mt-2">
+            <input #lastname [formGroup]="form" novalidate id="lastname" placeholder="Apellido" formControlName="lastname" type="lastname" autocomplete="lastname" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </div>
+          <div class="mt-2">
+            <input #phone [formGroup]="form" novalidate id="phone" placeholder="Telefono" formControlName="phone" type="phone" autocomplete="phone" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </div>
+          <p class="mt-10 text-center text-sm text-gray-500">
+            Datos de quien pagará el pedido <br />
+          </p>
+          <!-- <div *ngIf="form.controls['email'].touched && form.controls['email'].invalid">
+            <p
+              *ngIf="form.controls['email'].hasError('required')"
+              class="font-medium text-red-500 text-xs mt-1 ml-1"
+            >
+              This field is mandatory
+            </p>
+            <p
+              *ngIf="form.controls['email'].hasError('email')"
+              class="font-medium text-red-500 text-xs mt-1 ml-1"
+            >
+              This field should be a email
+            </p>
+          </div> -->
+        </div>
+  
+       <!--  <div>
+          <div class="mt-2">
+            <input formControlName="password" placeholder="Enter password" type="password" id="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </div>
+          <div *ngIf="form.controls['password'].touched && form.controls['password'].invalid">
+            <p
+              *ngIf="form.controls['password'].hasError('required')"
+              class="font-medium text-red-500 text-xs mt-1 ml-1"
+            >
+              This field is mandatory
+            </p>
+            <p
+              *ngIf="form.controls['password'].hasError('minlength')"
+              class="font-medium text-red-500 text-xs mt-1 ml-1"
+            >
+              This field should be greater than 6 characters
+            </p>
+          </div>
+        </div> -->
+        
+      </form>
+
+      
+        
+    </div>
+  </div>

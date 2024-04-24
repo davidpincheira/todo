@@ -25,6 +25,16 @@ export const routes: Routes = [
                 //component: ProductDetailComponent
                 loadComponent: () => import("./domains/products/pages/product-detail/product-detail.component").then(m => m.ProductDetailComponent)
             },
+            {
+                path: 'checkout',
+                //component: ProductDetailComponent
+                loadComponent: () => import("./domains/shared/components/checkout/checkout.component").then(m => m.CheckoutComponent)
+            },
+            {
+                path: 'login',
+                //component: ProductDetailComponent
+                loadComponent: () => import("./domains/shared/components/login/login.component").then(m => m.LoginComponent)
+            },
         ]
     },    
     {
