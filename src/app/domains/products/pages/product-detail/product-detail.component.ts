@@ -37,7 +37,8 @@ export class ProductDetailComponent {
   }
 
   addToCart(){
-    const product = this.product()
+    let product = this.product()
+    product!.quantity = 1   
     if(product){
       this.cartService.addToCart(product)
     }
