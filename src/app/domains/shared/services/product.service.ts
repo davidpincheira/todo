@@ -12,7 +12,7 @@ export class ProductService {
   constructor() { }
 
   getProducts(category_id?: string){
-    const url = new URL(`http://localhost:3000/api/v1/products`)
+    const url = new URL(`http://localhost:3000/api/products`)
     if(category_id){
       url.searchParams.set('category_id', category_id)
     }
@@ -20,7 +20,12 @@ export class ProductService {
   }
 
   getOne(id: string){
-    return this.http.get<Product>(`http://localhost:3000/api/v1/products/${id}`)
+    return this.http.get<Product>(`http://localhost:3000/api/products/${id}`)
 
+  }
+
+  getProductsByCategory(categoryId: number){
+
+    return this.http.get<Product[]>(`http://localhost:3000/api/categories/${categoryId}/products`)
   }
 }

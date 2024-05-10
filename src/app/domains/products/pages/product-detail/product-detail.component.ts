@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, Input, inject, signal } from '@angular/core';
 import { Product } from '@shared/models/product.model';
 import { CartService } from '@shared/services/cart.service';
@@ -17,12 +17,12 @@ export class ProductDetailComponent {
   cover = signal('')
   private productService = inject(ProductService)
   private cartService = inject(CartService)
+  private location = inject(Location)
 
   ngOnInit(){
     if(this.id){
       this.productService.getOne(this.id).subscribe({
         next: (res) => {
-          console.log(res)
           this.product.set(res)
           if(res.images[0]){
             this.cover.set(res.images[0])
@@ -43,6 +43,9 @@ export class ProductDetailComponent {
     }
   }
   
+  goToBack() {
+    this.location.back();
+  }
 
 
 }

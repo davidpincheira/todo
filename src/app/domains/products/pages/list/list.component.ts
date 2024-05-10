@@ -29,9 +29,11 @@ export class ListComponent {
   }
 
   ngOnChanges(changes: SimpleChanges){
-    const category_id = changes['category_id']
-    if(category_id){
-      this.getProducts()
+    if(changes['category_id']['firstChange'] == false || changes['category_id']['currentValue'] !== undefined){
+      const category_id = changes['category_id']['currentValue']
+      if(category_id){
+        this.filterByCategory(category_id)
+      }
     }
   }
 
@@ -67,6 +69,23 @@ export class ListComponent {
       },
       error: (err) => {
         console.error('Error getting categories: ', err)
+      }
+    })
+  }
+  filterByCategory(id: number){
+    this.productService.getProductsByCategory(id).subscribe({
+      next: (res)  => {
+        const modifiedProducts = res.map(product => {
+          return {
+            ...product,
+            quantity: 1
+          };
+        });
+        this.products.set([])
+        this.products.set(modifiedProducts)
+      },
+      error: (err) => {
+        console.error('Error getting products: ', err)
       }
     })
   }

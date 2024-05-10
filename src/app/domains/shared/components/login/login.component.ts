@@ -26,10 +26,10 @@ export class LoginComponent {
 
   login(){
     const { email, password } = this.form.getRawValue();
-    console.log(email, password)
     this.auth.login(email!, password!)
     .subscribe(() => {
-      this.router.navigate(['/']);
+      //debugger
+      this.router.navigate(['/products']);
     })
   }
 

@@ -3,7 +3,7 @@
         <ul class="mt-5 w-40">
             @for (ca of categories(); track ca) {
             <li>
-                <a routerLink="/" [queryParams]="{category_id: ca.id}">{{ca.name}}</a>
+                <a routerLink="/" [queryParams]="{category_id: ca.id}" >{{ca.name}}</a>
             </li>
             }
         </ul>

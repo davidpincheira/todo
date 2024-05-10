@@ -7,10 +7,7 @@ import { Product } from '../models/product.model';
 export class CartService {
 
   cart = signal<Product[]>([]) //es una señal(signal()) que administra un array ([]) de productos (Product) y se inicializa en vacio (([])) 
-  /* totalPrice = computed(()=>{
-    const cart = this.cart()
-    return cart.reduce((totalPrice, product) => totalPrice + product.price , 0);
-  }) */
+
   totalPrice() {
     const cart = this.cart();
     return cart.reduce((totalPrice, product) => totalPrice + (product.quantity * product.price), 0);

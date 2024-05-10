@@ -12,6 +12,6 @@ export class CategoryService {
   constructor() { }
 
   getAll(){
-    return this.http.get<Category[]>('http://localhost:3000/api/v1/categories')
-  }
+    return this.http.get<Category[]>('http://localhost:3000/api/categories')
+  }  
 }
