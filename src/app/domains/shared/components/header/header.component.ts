@@ -13,36 +13,24 @@ import { RouterLinkActive, RouterLinkWithHref } from '@angular/router';
 })
 export class HeaderComponent {
   hideSideMenu = signal(true)
-  private cartService = inject(CartService)
+  cartService = inject(CartService)
   cart = this.cartService.cart
-  totalPrice = this.cartService.totalPrice  
-
- /*  @Input() carito: Product[] = []
-  totalProducts = signal(0) */
 
   toggleSideMenu() {
     this.hideSideMenu.update(prevState =>  !prevState);
   }
 
-  deleteOneProduct(product: Product){
-    this.cartService.deleteFromCart(product)
+  deleteOneProduct(index: number){
+    this.cartService.deleteFromCart(index)
   }
 
   sumOneProduct(product: Product){
     this.cartService.addToCart(product)
   }
 
-  /* 
-  ngOnchanges(changes: SimpleChanges){
-    const carito = changes['cart']
-    if(carito) {
-      this.totalProducts.set(this.calcTotal())
-    }
+  getTotal(){
+    return this.cartService.totalPrice()
   }
-
-  calcTotal(){
-    return this.carito.reduce((totalProducts, product) => totalProducts + product.price, 0);
-  } */
 
  
 }

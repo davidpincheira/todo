@@ -23,6 +23,7 @@ export class ProductDetailComponent {
     if(this.id){
       this.productService.getOne(this.id).subscribe({
         next: (res) => {
+          res.quantity = 1          
           this.product.set(res)
           if(res.images[0]){
             this.cover.set(res.images[0])
@@ -36,12 +37,8 @@ export class ProductDetailComponent {
     this.cover.set(newImg)
   }
 
-  addToCart(){
-    let product = this.product()
-    product!.quantity = 1   
-    if(product){
-      this.cartService.addToCart(product)
-    }
+  addToCart(product: Product){
+    this.cartService.addToCart(product)
   }
   
   goToBack() {

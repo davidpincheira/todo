@@ -24,27 +24,11 @@
               >Home</a
             >
           </li>
-          <!-- <li>
-            <a
-              routerLink="/about"
-              routerLinkActive='underline'
-              class="block hover:underline"
-              >About</a
-            >
-          </li> -->
-          <!-- <li>
-            <a
-              routerLink="/services"
-              routerLinkActive='underline'
-              class="block hover:underline"
-              >Services</a
-            >
-          </li> -->
         </ul>
       </div>
       <div class="flex items-center">
         <button class="p-2 border rounded relative" (click)="toggleSideMenu()">
-          <div class="absolute -top-2 -left-2 rounded h-5 w-5 bg-black text-white text-xs">{{ cart().length }}</div>
+          <div class="absolute -top-2 -left-2 rounded h-5 w-5 bg-black text-white text-xs">{{ cartService.totalItems() }}</div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -88,7 +72,7 @@
   </div>
   <div>
     <div class="pt-4 flex flex-col">
-      @for (product of cart(); track product) {
+      @for (product of cart(); track product.id) {
         <div class="flex justify-between items-center space-y-2">
           <img class="m-2 h-16 w-16 rounded-md border object-cover object-center" [src]="product.images[0]" [alt]="product.title">
           <div class="flex w-full flex-col px-4 py-4">
@@ -96,7 +80,7 @@
             <p>$ {{ product.price }}</p>
           </div>
           <button class="text-black bg-red-500 font-medium rounded-md text-sm px-5 py-2.5 w-2"
-          (click)="deleteOneProduct(product)">-</button>
+          (click)="deleteOneProduct(product.id)">-</button>
           <span class="item-quantity font-bold mx-1"> {{product.quantity}} </span>
           <button class="text-black bg-green-500 font-medium rounded-md text-sm px-5 py-2.5 w-2"
           (click)="sumOneProduct(product)">+</button>
@@ -104,9 +88,9 @@
         
       }
       <div>
-        <p>Total: {{ totalPrice() }}</p>
+        <p>Total: {{ getTotal() }}</p>
       </div>
-      @if( cart().length>0){
+      @if( cartService.totalItems()>0){
         <button class="mt-4 mb-8 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white" routerLink="/checkout">Checkout</button>
       }
   </div>

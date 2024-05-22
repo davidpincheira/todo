@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { Product } from '../../../shared/models/product.model';
 import { CommonModule } from '@angular/common';
 import { RouterLinkWithHref } from '@angular/router';
+import { CartService } from '@shared/services/cart.service';
 
 @Component({
   selector: 'app-product',
@@ -13,9 +14,9 @@ import { RouterLinkWithHref } from '@angular/router';
 export class ProductComponent {
   @Input({required: true}) product !: Product ;
 
-  @Output() addToCartClicked = new EventEmitter();
+  cartService = inject(CartService)
 
   addToCartHandler(){
-    this.addToCartClicked.emit(this.product);
+    this.cartService.addToCart(this.product)
   }
 }
