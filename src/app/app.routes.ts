@@ -40,6 +40,11 @@ export const routes: Routes = [
                 //component: ProductDetailComponent
                 loadComponent: () => import("./domains/shared/components/login/login.component").then(m => m.LoginComponent)
             },
+            {
+                path: 'register',
+                //component: ProductDetailComponent
+                loadComponent: () => import("./domains/shared/components/register/register.component").then(m => m.RegisterComponent)
+            },
         ]
     },    
     {
