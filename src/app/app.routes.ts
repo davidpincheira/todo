@@ -16,7 +16,7 @@ export const routes: Routes = [
                 path: 'products',
                 //component: ListComponent
                 loadComponent: () => import("./domains/products/pages/list/list.component").then(m => m.ListComponent),
-                canActivate: [authGuard]
+                //canActivate: [authGuard]
             },
 /*             {
                 path: 'about',
@@ -33,7 +33,7 @@ export const routes: Routes = [
                 path: 'checkout',
                 //component: ProductDetailComponent
                 loadComponent: () => import("./domains/shared/components/checkout/checkout.component").then(m => m.CheckoutComponent),
-                canActivate: [authGuard]
+                //canActivate: [authGuard]
             },
             {
                 path: 'login',
@@ -44,6 +44,16 @@ export const routes: Routes = [
                 path: 'register',
                 //component: ProductDetailComponent
                 loadComponent: () => import("./domains/shared/components/register/register.component").then(m => m.RegisterComponent)
+            },
+            {
+                path: 'payment/:orderId',
+                loadComponent: () => import("./domains/shared/components/payment/payment.component").then(m => m.PaymentComponent),
+                canActivate: [authGuard]
+            },
+            {
+                path: 'order-confirmation/:orderId',
+                loadComponent: () => import("./domains/shared/components/order-confirmation/order-confirmation.component").then(m => m.OrderConfirmationComponent),
+                canActivate: [authGuard]
             },
         ]
     },    

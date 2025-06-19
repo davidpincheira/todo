@@ -70,21 +70,17 @@ export class CheckoutComponent implements OnInit {
   }
 
   checkout() {
-
-    console.log(this.form)
-
-    if (!this.form.valid) {
+    //debugger //TODO
+    /* if (!this.form.valid) {
       this.form.markAllAsTouched();
       this.errorMessage = 'Por favor, completa todos los campos requeridos';
       return;
     }
-
-    console.log("2")
     
     if (this.cartService.cart().length === 0) {
       this.errorMessage = 'Tu carrito está vacío';
       return;
-    }
+    } */
 
     this.isSubmitting = true;
     this.status = 'loading';
@@ -92,7 +88,6 @@ export class CheckoutComponent implements OnInit {
     
     const formData = this.form.getRawValue();
 
-    
     const orderDetails = {
       orderDate: new Date(),
       deliveryAddress: formData.address,
@@ -100,23 +95,26 @@ export class CheckoutComponent implements OnInit {
       email: formData.email,
       name: formData.name,
       phone: formData.phone,
-      province: formData.province, // Corregido de "privince" a "province"
+      province: formData.province,
       zip_code: formData.zip_code,
       totalPrice: this.getTotal(),
       finalPrice: this.getTotal(),
       statusId: 1,
       active: 1,
       user: this.user?.id,
-      orderItems: this.cartService.cart() // Enviar los items del carrito al backend
+      orderItems: this.cartService.cart()
     };
+
+    console.log(orderDetails)
     
     this.cartService.checkout(orderDetails).subscribe({
       next: (response: any) => {
         this.status = 'success';
         this.cartService.clearCart(); // Limpiar el carrito después de un checkout exitoso
-        // Mostrar mensaje de éxito más amigable que un alert
-        this.showSuccessMessage('¡Pedido realizado con éxito!');
-        this.router.navigate(['/products']);
+        
+        // Redirigir a la página de pago con el ID de la orden
+        const orderId = response.id || response.orderId;
+        this.router.navigate(['/payment', orderId]);
       },
       error: (error: any) => {
         this.status = 'failed';
@@ -124,11 +122,5 @@ export class CheckoutComponent implements OnInit {
         this.errorMessage = error.message || 'Hubo un error al procesar tu pedido. Por favor, inténtalo de nuevo.';
       }
     });
-  }
-
-  // Método para mostrar mensajes de éxito (puedes implementar esto como prefieras)
-  private showSuccessMessage(message: string): void {
-    // Por ahora, usamos alert, pero podrías usar un componente de notificación más elegante
-    alert(message);
   }
 }
