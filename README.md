@@ -25,3 +25,35 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+
+5. Configurar tu backend (si usas APIs reales):
+Para usar APIs reales, necesitarás:
+Correo Argentino:
+
+Registrarte en MiCorreo: https://www.correoargentino.com.ar/MiCorreo
+Obtener credenciales de API
+
+OCA:
+
+Contactar a OCA para credenciales de API corporativa
+Configurar cuenta empresa
+
+Andreani:
+
+Mínimo 300 envíos mensuales
+Solicitar credenciales REST API v2.0
+
+Servicios terceros (más fácil):
+
+Envia.com: Registro gratuito, APIs fáciles de usar
+RapidAPI: Marketplace con APIs de transportistas argentinos
+
+
+ Personalización rápida:
+
+Cambiar colores: Modifica las variables CSS al inicio del archivo
+Agregar carriers: Añade opciones al array en fetchShippingRates()
+Modificar origenes: Edita el array availableOrigins
+Ajustar tarifas: Modifica la lógica en calculateBaseRate()

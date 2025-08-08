@@ -13,11 +13,11 @@ interface OrderDetails {
 interface PaymentData {
   orderId: string;
   paymentMethod: string;
-  cardDetails?: {
-    cardName: string;
-    cardNumber: string;
-    expiryDate: string;
-    cvv: string;
+  cardDetails: {
+    cardName: string | null | undefined;
+    cardNumber: string | null | undefined;
+    expiryDate: string | null | undefined;
+    cvv: string | null | undefined;
   } | null;
 }
 
@@ -31,7 +31,7 @@ export class PaymentService {
   constructor() { }
 
   getOrderDetails(orderId: string): Observable<OrderDetails> {
-    return this.http.get<OrderDetails>(`${this.apiUrl}/orders/${orderId}`);
+    return this.http.get<OrderDetails>(`${this.apiUrl}/orderdetails/${orderId}`);
   }
 
   processPayment(paymentData: PaymentData): Observable<any> {

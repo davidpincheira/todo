@@ -114,10 +114,18 @@ export class PaymentComponent implements OnInit {
     this.isSubmitting = true;
     this.status = 'loading';
     this.errorMessage = '';
+
+    const paymentMethodValue = this.form.get('paymentMethod')?.value;
+
+    if (!paymentMethodValue) {
+      // Manejar el caso cuando no hay método de pago seleccionado
+      console.error('Payment method is required');
+      return; // o mostrar un mensaje de error
+    }
     
     const paymentData = {
       orderId: this.orderId,
-      paymentMethod: this.form.get('paymentMethod')?.value,
+      paymentMethod: paymentMethodValue,
       cardDetails: this.form.get('paymentMethod')?.value === 'credit_card' || 
                    this.form.get('paymentMethod')?.value === 'debit_card' ? {
         cardName: this.form.get('cardName')?.value,
@@ -127,7 +135,7 @@ export class PaymentComponent implements OnInit {
       } : null
     };
     
-    /* this.paymentService.processPayment(paymentData).subscribe({
+    this.paymentService.processPayment(paymentData).subscribe({
       next: (response) => {
         this.status = 'success';
         this.showSuccessMessage('¡Pago realizado con éxito!');
@@ -138,7 +146,7 @@ export class PaymentComponent implements OnInit {
         this.isSubmitting = false;
         this.errorMessage = error.message || 'Hubo un error al procesar tu pago. Por favor, inténtalo de nuevo.';
       }
-    }); */
+    });
   }
 
   private showSuccessMessage(message: string): void {

@@ -25,5 +25,16 @@ export class UsersService {
     const user = { name, password };
     return this.http.post<User>(`${this.apiUrl}/signup`, user);
   }
+
+  // Enviar código de verificación
+  sendVerificationCode(data: { method: 'email' | 'sms', contact: string }) {
+    return this.http.post(`${this.apiUrl}/auth/send-verification-code`, data);
+  }
+
+  // Verificar código
+  verifyCode(data: { method: 'email' | 'sms', contact: string, code: string }) {
+    return this.http.post(`${this.apiUrl}/auth/verify-code`, data);
+  }
+
   
 }

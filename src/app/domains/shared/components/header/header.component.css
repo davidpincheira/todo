@@ -15,3 +15,8 @@
         display: block;
     }
 }
+
+
+.bg-custom-blue {
+  background-color: #aeceff;
+}
